@@ -5,10 +5,12 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  SectionList,
   TextInput,
   TouchableOpacity,
   View,
   FlatList,
+  SafeAreaView,
 } from "react-native";
 const DATA = [
   { id: 1, img: require("../assets/brahmastra.jpg"), title: "Brahmastra" },
@@ -31,6 +33,12 @@ const DATA2 = [
   { id: 2, img: require("../assets/adipurush.jpg"), title: "Adipurush" },
   { id: 3, img: require("../assets/Karthikeya.jpg"), title: "Karthikeya 2" },
   { id: 4, img: require("../assets/Liger.jpg"), title: "Liger" },
+];
+const DATA3 = [
+  { id: 1, img: require("../assets/M1.jpg") },
+  { id: 2, img: require("../assets/M2S.jpg") },
+  { id: 3, img: require("../assets/M3H.jpg") },
+  { id: 4, img: require("../assets/M4B.jpg") },
 ];
 
 export default function Home({ navigation }) {
@@ -79,20 +87,24 @@ export default function Home({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      <ImageBackground
-        source={require("../assets/Vikram-Vedha1.jpg")}
-        style={styles.HImage}
-      >
-        <View style={styles.XYZ}>
-          <TouchableOpacity onPress={() => alert("hel")}>
-            <Image source={require("../assets/Left2.png")} style={styles.img} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => alert("hello")}>
-            <Image source={require("../assets/right.png")} style={styles.img} />
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
-
+      <View>
+        <FlatList
+          horizontal={true}
+          data={DATA3}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => {
+            return (
+              <View style={styles.container1}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Brahmastra")}
+                >
+                  <Image source={item.img} style={styles.HImage}></Image>
+                </TouchableOpacity>
+              </View>
+            );
+          }}
+        />
+      </View>
       <Text style={styles.Text}>BOLLYWOOD MOVIES</Text>
       <View>
         <FlatList
@@ -278,7 +290,8 @@ const styles = StyleSheet.create({
   },
   HImage: {
     height: 200,
-    width: "100%",
+    width: 350,
+    marginHorizontal: 5,
     marginBottom: 20,
   },
   img: {

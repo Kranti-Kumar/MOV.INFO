@@ -26,6 +26,13 @@ const DATA1 = [
   { id: 6, title: "Cobra", img: require("../assets/Cobra.jpg") },
 ];
 
+const DATA2 = [
+  { id: 1, img: require("../assets/SalaarB.jpg") },
+  { id: 2, img: require("../assets/M2S.jpg") },
+  { id: 3, img: require("../assets/M3S.jpg") },
+  { id: 4, img: require("../assets/M1S.jpg") },
+];
+
 export default function Bollywood({ navigation }) {
   return (
     <ScrollView style={styles.container}>
@@ -39,19 +46,22 @@ export default function Bollywood({ navigation }) {
         <Text style={styles.netflix}>MOV.INFO</Text>
         <Text style={styles.H}>.TOLLYWOOD</Text>
       </View>
-      <ImageBackground
-        source={require("../assets/SalaarB.jpg")}
-        style={styles.HImage}
-      >
-        <View style={styles.XYZ}>
-          <TouchableOpacity onPress={() => alert("hel")}>
-            <Image source={require("../assets/Left2.png")} style={styles.img} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => alert("hel")}>
-            <Image source={require("../assets/right.png")} style={styles.img} />
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
+      <FlatList
+        horizontal={true}
+        data={DATA2}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => {
+          return (
+            <View style={styles.container1}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Brahmastra")}
+              >
+                <Image source={item.img} style={styles.HImage}></Image>
+              </TouchableOpacity>
+            </View>
+          );
+        }}
+      />
       <Text style={styles.U}>UPCOMMING...</Text>
       <View>
         <FlatList
@@ -223,9 +233,9 @@ const styles = StyleSheet.create({
   },
   HImage: {
     height: 200,
-    width: "100%",
+    width: 350,
+    marginHorizontal: 5,
     marginBottom: 20,
-    marginTop: 20,
   },
   img: {
     height: "100%",

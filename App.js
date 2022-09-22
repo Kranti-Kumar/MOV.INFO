@@ -20,6 +20,7 @@ export default function App() {
       >
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={Home} />
+
         <Stack.Screen name="Brahmastra" component={Brahmastra} />
         <Stack.Screen name="Vikram" component={Vikram} />
         <Stack.Screen name="Bollywood" component={Bollywood} />
